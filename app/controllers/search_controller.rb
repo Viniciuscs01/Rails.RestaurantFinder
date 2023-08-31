@@ -1,6 +1,7 @@
 class SearchController < ApplicationController
 
   def index
-    render json: "TESTE", status: :ok
+    restaurants = SearchService.call(request.query_parameters)
+    render(json: RestaurantsRepresenter.new(restaurants).as_json, status: :ok)
   end
 end
